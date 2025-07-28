@@ -1,0 +1,98 @@
+<!--
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat Mode</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-gray-900 to-gray-800 min-h-screen text-white p-8">
+    <div class="max-w-2xl mx-auto bg-gray-800 border border-gray-700 shadow-2xl rounded-2xl p-6">
+        <h2 class="text-2xl font-bold mb-4">Chat Mode - <span class="text-blue-400">Level: {{ level }}</span></h2>
+
+        {% if feedback %}
+            <div class="mb-4">
+                <h3 class="font-semibold">Previous Question:</h3>
+                <p class="mb-2 italic">{{ last_question }}</p>
+
+                <h3 class="font-semibold">Feedback:</h3>
+                <pre class="bg-gray-900 p-3 rounded">{{ feedback }}</pre>
+            </div>
+        {% endif %}
+
+        <div class="mb-4">
+            <h3 class="font-semibold">New Question:</h3>
+            <p class="italic">{{ question }}</p>
+        </div>
+
+        <form method="POST" class="space-y-4">
+            <input type="hidden" name="current_question" value="{{ question }}">
+            <input type="text" id="user_answer" name="user_answer" required autocomplete="off" placeholder="Type your answer..." class="w-full p-2 rounded bg-gray-900 text-white border border-gray-600">
+            <button type="submit" class="bg-blue-600 w-full py-2 rounded hover:bg-blue-700 transition font-semibold">Submit Answer</button>
+        </form>
+
+        <div class="mt-4 text-center">
+            <a href="{{ url_for('select_level') }}" class="text-sm text-blue-400 hover:underline">Back to level selection</a>
+        </div>
+    </div>
+</body>
+</html>
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat Mode</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-gray-900 to-gray-800 min-h-screen text-white p-8">
+    <div class="max-w-2xl mx-auto bg-gray-800 border border-gray-700 shadow-2xl rounded-2xl p-6 space-y-6">
+
+        <!-- Başlık -->
+        <h2 class="text-2xl font-bold mb-4">Chat Mode - <span class="text-blue-400">Level: {{ level }}</span></h2>
+
+        <!-- Yeni Soru -->
+        <div class="bg-gray-900 p-4 rounded-xl border border-gray-700">
+            <h3 class="text-lg font-semibold text-green-400 mb-1">New Question:</h3>
+            <p class="italic text-white text-lg">{{ question }}</p>
+        </div>
+
+        <!-- Önceki Soru ve Geri Bildirim -->
+        <!-- Önceki Soru ve Geri Bildirim -->
+        {% if feedback %}
+            <div class="bg-gray-900 p-4 rounded-xl border border-gray-700 space-y-2">
+                <h3 class="text-md font-semibold text-yellow-400">Previous Question:</h3>
+                <p class="italic text-white">{{ last_question }}</p>
+        
+                <h3 class="text-md font-semibold text-yellow-400 mt-4">Feedback:</h3>
+                <div class="bg-gray-800 rounded-md max-h-60 overflow-y-auto whitespace-pre-wrap break-words border border-gray-600 shadow-inner">
+                    {{ feedback }}
+                </div>
+            </div>
+        {% endif %}
+
+
+        <!-- Form -->
+        <form method="POST" class="space-y-4">
+            <input type="hidden" name="current_question" value="{{ question }}">
+            <input type="text" id="user_answer" name="user_answer" required autocomplete="off"
+                   placeholder="Type your answer..."
+                   class="w-full p-3 rounded bg-gray-900 text-white border border-gray-600 placeholder-gray-500">
+            <button type="submit"
+                    class="bg-blue-600 w-full py-2 rounded hover:bg-blue-700 transition font-semibold">
+                Submit Answer
+            </button>
+        </form>
+
+        <!-- Geri Dön Linki -->
+        <div class="mt-4 text-center">
+            <a href="{{ url_for('select_level') }}" class="text-sm text-blue-400 hover:underline">
+                Back to level selection
+            </a>
+        </div>
+
+    </div>
+</body>
+</html>

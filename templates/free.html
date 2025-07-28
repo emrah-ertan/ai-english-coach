@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Free Mode</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white min-h-screen p-6">
+    <div class="max-w-2xl mx-auto bg-gray-800 p-6 rounded-xl shadow-xl space-y-6">
+        <h2 class="text-2xl font-bold text-blue-400">Free Mode</h2>
+        <p class="text-sm text-gray-400">You can talk about anything. This is a free chat mode.</p>
+
+
+
+        <form method="POST" class="space-y-4">
+            <textarea name="user_input" rows="4" placeholder="Say something..." required
+                      class="w-full p-3 rounded bg-gray-900 text-white border border-gray-600 placeholder-gray-500"></textarea>
+            <button type="submit"
+                    class="bg-blue-600 w-full py-2 rounded hover:bg-blue-700 transition font-semibold">
+                Send
+            </button>
+        </form>
+
+        <div class="bg-gray-700 p-4 rounded border border-gray-600 h-64 overflow-y-auto space-y-2">
+        {% for message in history %}
+            {% if message.type == 'human' %}
+                <div class="text-blue-300"><strong>You:</strong> {{ message.content }}</div>
+            {% elif message.type == 'ai' %}
+                <div class="text-green-300"><strong>AI:</strong> {{ message.content }}</div>
+            {% endif %}
+        {% endfor %}
+        </div>
+        
+        <!--{% if response %}
+            <div class="bg-gray-700 p-4 rounded border border-gray-600 whitespace-pre-wrap">
+                <h3 class="text-lg font-semibold text-green-400 mb-2">AI Response:</h3>
+                <p>{{ response }}</p>
+            </div>
+        {% endif %} -->
+
+        <div class="mt-4 text-center">
+            <a href="{{ url_for('mode_select', level=level) }}" class="text-sm text-blue-400 hover:underline">
+                Back to mode selection
+            </a>
+        </div>
+    </div>
+</body>
+</html>

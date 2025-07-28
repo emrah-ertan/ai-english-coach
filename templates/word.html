@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Word Mode</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-gray-900 to-gray-800 min-h-screen text-white p-8">
+    <div class="max-w-2xl mx-auto bg-gray-800 border border-gray-700 shadow-2xl rounded-2xl p-6">
+        <h2 class="text-2xl font-bold mb-4">İngilizce kelime: <span class="text-green-400">{{ word["headword"] }}</span></h2>
+
+        <form method="POST" class="space-y-4">
+            <input type="hidden" name="old_word" value="{{ word['headword'] }}">
+            <input type="text" name="user_input" required placeholder="Türkçe anlamını yaz..." class="w-full p-2 rounded bg-gray-900 text-white border border-gray-600" autocomplete="off">
+            <button type="submit" class="bg-green-600 w-full py-2 rounded hover:bg-green-700 transition font-semibold">Gönder</button>
+        <div class="mt-4 text-center">
+            <a href="{{ url_for('select_level') }}" class="text-sm text-blue-400 hover:underline">Back to level selection</a>
+        </div>
+        </form>
+
+        {% if show_result %}
+        <div class="mt-6">
+            <h3 class="text-lg font-semibold mb-2">Sonuç (önceki kelime: "{{ old_word }}"):</h3>
+            <ul class="space-y-1 text-sm">
+                <li><strong>Senin cevabın:</strong> {{ user_input }}</li>
+                <li><strong>Doğru mu?:</strong> {{ feedback.is_correct }}</li>
+                <li><strong>Skor:</strong> {{ feedback.score }}</li>
+                <li><strong>AI’ın geri bildirimi:</strong> {{ feedback.feedback }}</li>
+                <li><strong>AI’a göre doğru çeviri:</strong> {{ feedback.correct_translation }}</li>
+            </ul>
+            
+            
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

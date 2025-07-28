@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Academic Mode</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white min-h-screen p-6">
+    <div class="max-w-2xl mx-auto bg-gray-800 p-6 rounded-xl shadow-xl space-y-6">
+        <h2 class="text-2xl font-bold text-yellow-400">Academic Mode</h2>
+        <p class="text-sm text-gray-400">Paste a paragraph. AI will evaluate it in terms of academic English.</p>
+
+        <form method="POST" class="space-y-4">
+            <textarea name="user_text" rows="6" placeholder="Paste your text here..." required
+                      class="w-full p-3 rounded bg-gray-900 text-white border border-gray-600 placeholder-gray-500"></textarea>
+            <button type="submit"
+                    class="bg-yellow-500 w-full py-2 rounded hover:bg-yellow-600 transition font-semibold">
+                Evaluate
+            </button>
+        </form>
+
+        {% if feedback %}
+            <div class="bg-gray-700 p-4 rounded border border-gray-600 whitespace-pre-wrap space-y-3">
+                <h3 class="text-lg font-semibold text-green-400">AI Feedback:</h3>
+                <p>{{ feedback }}</p>
+
+                {% if score %}
+                    <h3 class="text-md font-semibold text-blue-300 mt-4">Score:</h3>
+                    <div class="text-2xl font-bold">{{ score }}/10</div>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        <div class="mt-4 text-center">
+            <a href="{{ url_for('mode_select', level=level) }}" class="text-sm text-blue-400 hover:underline">
+                Back to mode selection
+            </a>
+        </div>
+    </div>
+</body>
+</html>
